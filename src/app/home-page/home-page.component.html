@@ -1,0 +1,42 @@
+<div class="center">
+  <div style="text-align: center;">
+    <h2>StackFusion</h2>
+  </div>
+  <h5><b>Please fill all the mandatory fields below to submit form</b></h5>
+  <form [formGroup]="exampleForm" (ngSubmit) = "onClickSubmit(exampleForm.controls)">
+    <div class="form-group">
+      <div style="margin-bottom: 3ex;">
+        <label>Name:</label>
+        <input class="form-control" formControlName="name">
+        <span *ngIf="name.touched && name.errors?.required" style="color: tomato;">
+          Name is required
+      </span> 
+      </div>
+      <div style="margin-bottom: 3ex;">
+        <label>email:</label>
+            <input type="email" class="form-control" formControlName="email">
+            <span *ngIf="email.touched && email.invalid" style="color: tomato;">
+                Wrong email format
+            </span> 
+      </div>
+      <div style="margin-bottom: 3ex;">
+        <label>phone number:</label>
+            <input class="form-control" formControlName="phone">
+            <span *ngIf="phone.touched && phone.invalid" style="color: tomato;">
+              Phone format is invalid, only 10 digit number are required
+          </span> 
+      </div>
+      <div style="margin-bottom: 3ex;">
+        <label>Date of Birth:</label>                      
+              <input type="text" class="form-control mb-3" placeholder="Click to open calender" bsDatepicker formControlName="date" />
+            <span *ngIf="date.touched && date.errors?.required" style="color: tomato;">
+              Date of birth invalid
+          </span> 
+      </div>
+      <div style="text-align: center;">
+        <button title="Only enabled when all fields are correct"  class="btn btn-primary" [disabled]="!exampleForm.valid">Submit Form</button>
+      </div>
+      <label style="margin-top: 8px;">As heroku server gets sleep after 30 min of inactivity, so it may take upto 30 seconds to submit form</label> 
+    </div>
+  </form>
+</div>
